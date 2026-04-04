@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {},
   "pebble": {
-    "displayName": "c-face1",
+    "displayName": "Butterfly",
     "uuid": "a1fab7d2-ca88-43f0-8a24-433b5052cb60",
     "sdkVersion": "3",
     "enableMultiJS": true,
