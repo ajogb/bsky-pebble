@@ -1,14 +1,11 @@
 #include "start_menu.h"
 
-#define NUM_ROWS 3
+#define NUM_ROWS 2
+#define TITLE_HEIGHT 24
 
 static Window *s_window_start;
 static MenuLayer *s_menu_layer;
-
-// static SimpleMenuItem items[] = {{.title = "Following"}, {.title = "Feeds"}};
-
-// static SimpleMenuSection main_section = {
-//     .title = "Butterfly", .items = items, .num_items = 2};
+static Layer *s_canvas_layer;
 
 static uint16_t get_num_rows_callback(MenuLayer *menu_layer,
                                       uint16_t section_index, void *context) {
@@ -20,12 +17,9 @@ static void draw_row_callback(GContext *ctx, const Layer *cell_layer,
                               MenuIndex *cell_index, void *context) {
   switch (cell_index->row) {
   case 0:
-    menu_cell_title_draw(ctx, cell_layer, "Butterfly");
-    break;
-  case 1:
     menu_cell_basic_draw(ctx, cell_layer, "Following", NULL, NULL);
     break;
-  case 2:
+  case 1:
     menu_cell_basic_draw(ctx, cell_layer, "Feeds", NULL, NULL);
     break;
   default:
@@ -35,7 +29,7 @@ static void draw_row_callback(GContext *ctx, const Layer *cell_layer,
 
 static int16_t get_cell_height_callback(struct MenuLayer *menu_layer,
                                         MenuIndex *cell_index, void *context) {
-  const int16_t cell_height = 44;
+  const int16_t cell_height = 36;
   return cell_height;
 }
 
@@ -44,11 +38,23 @@ static void select_callback(struct MenuLayer *menu_layer, MenuIndex *cell_index,
   // Do something in response to the button press
 }
 
+static void canvas_update_proc(Layer *layer, GContext *ctx) {
+  graphics_context_set_fill_color(ctx, GColorPictonBlue);
+  GRect bounds = layer_get_bounds(layer);
+  graphics_fill_rect(ctx,bounds,0,0);
+
+}
 static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
+  GRect titlebar = GRect(0, 0, bounds.size.w, TITLE_HEIGHT);
+  GRect menu_bounds =
+      GRect(0, TITLE_HEIGHT, bounds.size.w, bounds.size.h - TITLE_HEIGHT);
+  s_canvas_layer = layer_create(titlebar);
+  layer_set_update_proc(s_canvas_layer, canvas_update_proc);
 
-  s_menu_layer = menu_layer_create(bounds);
+
+  s_menu_layer = menu_layer_create(menu_bounds);
   menu_layer_set_click_config_onto_window(s_menu_layer, window);
 
   menu_layer_set_callbacks(s_menu_layer, NULL,
@@ -59,6 +65,7 @@ static void window_load(Window *window) {
                                .select_click = select_callback,
 
                            });
+  layer_add_child(window_layer, s_canvas_layer);
   layer_add_child(window_layer, menu_layer_get_layer(s_menu_layer));
 }
 
