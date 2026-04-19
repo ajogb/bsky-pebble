@@ -43,6 +43,7 @@ function auth() {
       JSON.stringify(body),
       function (e) {
         console.log(e);
+        e = JSON.parse(e);
         let auth_token = e.accessJwt;
         let auth_refresh_token = e.refreshJwt;
         let did = e.did;
