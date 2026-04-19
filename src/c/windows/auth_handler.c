@@ -4,7 +4,7 @@ static Window *s_window;
 
 static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
-  GRect bounds = layer_get_bounds(window_layer);
+  // GRect bounds = layer_get_bounds(window_layer);
   
 }
 

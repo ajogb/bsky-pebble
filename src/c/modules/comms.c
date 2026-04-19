@@ -6,7 +6,8 @@ static bool s_js_ready;
 bool comms_is_js_ready() { return s_js_ready; }
 
 static void comms_inbox_received_callback(DictionaryIterator *iter, void *context) {
-  Tuple *ready_tuple = dict_find(iter, MESSAGE_KEY_jsReady);
+  Tuple *ready_tuple = dict_find(iter, MESSAGE_KEY_JSREADY);
+
   if (ready_tuple) {
     // PebbleKit JS is ready! Safe to send messages
     s_js_ready = true;
@@ -38,5 +39,5 @@ void comms_app_message_start(void) {
   app_message_register_outbox_sent(comms_outbox_sent_callback);
   app_message_register_outbox_failed(comms_outbox_failed_callback);
 
-  app_message_open(BOX_SIZE, BOX_SIZE);
+  app_message_open(1024, 128);
 }
