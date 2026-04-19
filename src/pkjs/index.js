@@ -19,7 +19,7 @@ var xhrRequest = function (url, type, headers, body = null, callback) {
 };
 
 function auth() {
-  let url = "https://public.api.bsky.app/xrpc/com.atproto.server.createSession";
+  let url = "https://bsky.social/xrpc/com.atproto.server.createSession";
   console.log("reading settings");
   let settings = JSON.parse(localStorage.getItem("clay-settings") || "{}");
   USER_ID = settings.C_USER_ID;
