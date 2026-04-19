@@ -31,19 +31,17 @@ function auth() {
   } else {
     let headers = { "Content-Type": "application/json" };
     let body = { identifier: USER_ID, password: APP_PASSWORD };
-    let response;
     let authReq = new xhrRequest(
       url,
       "POST",
       headers,
       JSON.stringify(body),
-      response = function (e) {
+      function (e) {
         console.log(e);
         return e;
       }
     );
   }
-  return response;
 }
 
 Pebble.addEventListener("ready", function () {
