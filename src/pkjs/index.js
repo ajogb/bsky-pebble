@@ -4,6 +4,11 @@ var clay = new Clay(clayConfig);
 
 let USER_ID;
 let APP_PASSWORD;
+let auth_token;
+let auth_refresh_token;
+let did;
+let handle;
+
 
 //xhr request helper
 var xhrRequest = function (url, type, headers, body = null, callback) {
@@ -38,7 +43,12 @@ function auth() {
       JSON.stringify(body),
       function (e) {
         console.log(e);
-        return e;
+        let auth_token = e.accessJwt;
+        let auth_refresh_token = e.refreshJwt;
+        let did = e.did;
+        let handle = e.handle;
+        console.log(auth_token,auth_refresh_token,"\n",did,handle);
+
       }
     );
   }
