@@ -31,16 +31,19 @@ function auth() {
   } else {
     let headers = { "Content-Type": "application/json" };
     let body = { identifier: USER_ID, password: APP_PASSWORD };
+    let response;
     let authReq = new xhrRequest(
       url,
       "POST",
       headers,
       JSON.stringify(body),
-      function (e) {
+      response = function (e) {
         console.log(e);
+        return e;
       }
     );
   }
+  return response;
 }
 
 Pebble.addEventListener("ready", function () {
@@ -48,5 +51,6 @@ Pebble.addEventListener("ready", function () {
   console.log("PebbleKit JS ready!");
 
   Pebble.sendAppMessage({ JSREADY: 1 });
-  auth();
+  let response = auth();
+  console.log(response);
 });
