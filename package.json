@@ -1,37 +1,37 @@
 {
-    "author": "squiddyte",
-    "dependencies": {
-        "@rebble/clay": "^1.0.8"
-    },
-    "keywords": [
-        "pebble-app"
+  "author": "squiddyte",
+  "dependencies": {
+    "@rebble/clay": "^1.0.8"
+  },
+  "keywords": [
+    "pebble-app"
+  ],
+  "name": "blue-view",
+  "pebble": {
+    "capabilities": [
+      "configurable"
     ],
-    "name": "blue-view",
-    "pebble": {
-        "capabilities": [
-            "configurable"
-        ],
-        "displayName": "Butterfly",
-        "enableMultiJS": true,
-        "messageKeys": [
-            "JSREADY",
-            "AUTH_REQ",
-            "AUTH_RES",
-            "C_USER_ID",
-            "C_APP_PASSWORD"
-        ],
-        "projectType": "native",
-        "resources": {
-            "media": []
-        },
-        "sdkVersion": "3",
-        "targetPlatforms": [
-            "emery"
-        ],
-        "uuid": "a1fab7d2-ca88-43f0-8a24-433b5052cb60",
-        "watchapp": {
-            "watchface": false
-        }
+    "displayName": "Butterfly",
+    "enableMultiJS": true,
+    "messageKeys": [
+      "JSREADY",
+      "AUTH_REQ",
+      "AUTH_RES",
+      "C_USER_ID",
+      "C_APP_PASSWORD"
+    ],
+    "projectType": "native",
+    "resources": {
+      "media": []
     },
-    "version": "1.0.0"
+    "sdkVersion": "3",
+    "targetPlatforms": [
+      "emery"
+    ],
+    "uuid": "a1fab7d2-ca88-43f0-8a24-433b5052cb60",
+    "watchapp": {
+      "watchface": false
+    }
+  },
+  "version": "1.0.0"
 }

@@ -3,3 +3,4 @@ build/*
 .vscode/*
 resources/auth.txt
 node_modules/*
+.clangd

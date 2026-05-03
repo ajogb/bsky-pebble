@@ -4,7 +4,7 @@
 #include "windows/start_menu.h"
 #include "modules/comms.h"
 
-static void init() { 
+static void init() {
   start_menu_push();
   comms_app_message_start();
 }
